@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span onclick="getData('popular.html');">Hot</span>
+        <span onclick="getData('latest.html');">News</span>
+    </div>
+    <div id="content"></div>
+    <script>
+        // XMLHttpRequest 用來與Server連線
+        function getData(page){
+            var req = new XMLHttpRequest();
+            req.open('get','http://127.0.0.1:5500/'+page);
+            req.onload = function(){ // load 事件偵測連線的狀態
+                //連線完成
+                var content =  document.getElementById('content');
+                content.innerHTML = this.responseText;
+            }
+            req.send();//送出連線
+        }
+    </script>
+</body>
+</html>
